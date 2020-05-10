@@ -1,19 +1,24 @@
 package UserInterface;
 
+import java.awt.CardLayout;
+import java.awt.EventQueue;
+
 import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 
-public class MainApp extends JFrame {
-	public MainApp(int width, int height) {
-
-		add(new Login(width, height));
-		setSize(width, height);
-		setTitle("books");
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setLocationRelativeTo(null);
-		setVisible(true);
-	}
+public class MainApp {
 
 	public static void main(String[] args) {
-		new MainApp(800, 500);
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Login frame = new Login(400,600);
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
 	}
 }
