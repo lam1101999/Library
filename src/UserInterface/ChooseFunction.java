@@ -4,12 +4,16 @@ import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Keeptrack.CurrentAccount;
 
 public class ChooseFunction extends JFrame {
 	private static int width, height;
@@ -43,7 +47,7 @@ public class ChooseFunction extends JFrame {
 		gbc.gridwidth = GridBagConstraints.REMAINDER;
 		gbc.anchor = GridBagConstraints.NORTH;
 
-		contentPane.add(new JLabel("<html><h1><strong>Welcome to Sparta's library</strong></h1></html>"), gbc);
+		contentPane.add(new JLabel("<html><h1><strong>Welcome "+ CurrentAccount.getCurrentAccount().getName()+" to Sparta's library</strong></h1></html>"), gbc);
 
 		gbc.anchor = GridBagConstraints.CENTER;
 		gbc.fill = GridBagConstraints.HORIZONTAL;
@@ -64,6 +68,12 @@ public class ChooseFunction extends JFrame {
 	private JButton createBtnBorrow() {
 		JButton btn = new JButton("Borrow Book");
 		btn.setPreferredSize(new Dimension(500, 50));
+		btn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				
+			}
+		});
 		return btn;
 	}
 

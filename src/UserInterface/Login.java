@@ -17,8 +17,9 @@ import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 
-import ControlDataBase.CheckAccount;
+import ControlDataBase.ControlAccount;
 import ControlDataBase.MyConnection;
+import Keeptrack.CurrentAccount;
 
 public class Login extends JFrame {
 	private int width, height;
@@ -79,8 +80,9 @@ public class Login extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				String UserName = user.getText();
 				String Password = password.getText();
-				if (CheckAccount.check(UserName, Password)) {
+				if (ControlAccount.check(UserName, Password)) {
 					dispose();
+					CurrentAccount.setCurrentAccount(ControlAccount.find(UserName));
 					ChooseFunction chooseFunction = new ChooseFunction(Login.this.width, Login.this.height);
 					chooseFunction.setTitle("Welcome");
 					chooseFunction.setVisible(true);// making the frame visible
