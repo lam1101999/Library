@@ -10,7 +10,7 @@ import javax.swing.border.EmptyBorder;
 public class BorrowBook extends JFrame {
 
 	private JPanel contentPane;
-
+	private int width, height;
 	/**
 	 * Launch the application.
 	 */
@@ -18,7 +18,7 @@ public class BorrowBook extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					BorrowBook frame = new BorrowBook();
+					BorrowBook frame = new BorrowBook(500,700);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -30,9 +30,12 @@ public class BorrowBook extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public BorrowBook() {
+	public BorrowBook(int width, int height) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		this.width = width;
+		this.height = height;
+		setSize(474, 297);
+		setLocationRelativeTo(null);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));

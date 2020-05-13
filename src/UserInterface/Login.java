@@ -1,99 +1,121 @@
 package UserInterface;
 
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.awt.EventQueue;
 
-import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.SwingUtilities;
-import javax.swing.border.EmptyBorder;
+import javax.swing.JPasswordField;
+import javax.swing.SwingConstants;
+import javax.swing.JButton;
+import javax.swing.UIManager;
 
 import ControlDataBase.ControlAccount;
-import ControlDataBase.MyConnection;
 import Keeptrack.CurrentAccount;
 
-public class Login extends JFrame {
-	private int width, height;
-	private JTextField user;
-	private JTextField password;
-	private JButton btnLogin;
-	private JPanel contentPane;
-	private static Login login = null;
+import java.awt.Font;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
+public class Login extends JFrame{
 
-	public Login(int width, int height) {
-		super();
-		this.width = width;
-		this.height = height;
-		setSize(this.width, this.height);
-		setTitle("Login");
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setLocationRelativeTo(null);
-		
+	private JPanel contentPanel;
+	private JTextField txtUser;
+	private JPasswordField txtPassword;
 
-		addComponent();
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Login window = new Login();
+					window.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
 	}
 
-	private void addComponent() {
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		
-		// set layout
-		contentPane.setLayout(new GridBagLayout());
-		// a welcome string
-		GridBagConstraints gbc = new GridBagConstraints();
-		gbc.gridwidth = GridBagConstraints.REMAINDER;
-		gbc.anchor = GridBagConstraints.NORTH;
-
-		contentPane.add(new JLabel("<html><h1><strong>Login</strong></h1></html>"), gbc);
-		// add some main component
-		gbc.anchor = GridBagConstraints.CENTER;
-		gbc.fill = GridBagConstraints.HORIZONTAL;
-		gbc.insets = new java.awt.Insets(5, 0, 5, 0);
-
-		user = new JTextField("");
-		password = new JTextField("");
-		btnLogin = createbtnLogin();
-
-		contentPane.add(user, gbc);
-		contentPane.add(password, gbc);
-		contentPane.add(btnLogin, gbc);
-
-		gbc.weighty = 10;
-
-
+	/**
+	 * Create the application.
+	 */
+	public Login() {
+		initialize();
 	}
 
-	private JButton createbtnLogin() {
-		JButton btn = new JButton("Login");
-		btn.addActionListener(new ActionListener() {
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		
+		this.setBounds(100, 100, 500, 300);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.getContentPane().setLayout(null);
+		
+		contentPanel = new JPanel();
+		contentPanel.setBackground(UIManager.getColor("Table.selectionBackground"));
+		contentPanel.setForeground(UIManager.getColor("Table.selectionBackground"));
+		contentPanel.setBounds(0, 0, 484, 261);
+		this.getContentPane().add(contentPanel);
+		contentPanel.setLayout(null);
+		
+		JLabel Welcome = new JLabel("Login");
+		Welcome.setFont(new Font("Tw Cen MT Condensed", Font.BOLD, 30));
+		Welcome.setHorizontalAlignment(SwingConstants.CENTER);
+		Welcome.setBounds(173, 11, 147, 43);
+		contentPanel.add(Welcome);
+		
+		JLabel User = new JLabel("User:");
+		User.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		User.setHorizontalAlignment(SwingConstants.LEFT);
+		User.setBounds(31, 76, 57, 35);
+		contentPanel.add(User);
+		
+		JLabel Password = new JLabel("Password:");
+		Password.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		Password.setBounds(31, 122, 72, 32);
+		contentPanel.add(Password);
+		
+		txtUser = new JTextField();
+		txtUser.setBounds(132, 76, 233, 32);
+		contentPanel.add(txtUser);
+		txtUser.setColumns(10);
+		
+		txtPassword = new JPasswordField();
+		txtPassword.setBounds(132, 122, 233, 32);
+		contentPanel.add(txtPassword);
+		
+		JButton btnLogin = new JButton("Login");
+		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String UserName = user.getText();
-				String Password = password.getText();
-				if (ControlAccount.check(UserName, Password)) {
+				String tempUserName = txtUser.getText();
+				String tempPassword = String.copyValueOf(txtPassword.getPassword());
+				if (ControlAccount.check(tempUserName, tempPassword)) {
 					dispose();
-					CurrentAccount.setCurrentAccount(ControlAccount.find(UserName));
-					ChooseFunction chooseFunction = new ChooseFunction(Login.this.width, Login.this.height);
+					CurrentAccount.setCurrentAccount(ControlAccount.find(tempUserName));
+					ChooseFunction chooseFunction = new ChooseFunction(500,600);
 					chooseFunction.setTitle("Welcome");
 					chooseFunction.setVisible(true);// making the frame visible
 				} else {
-					JOptionPane.showMessageDialog(null, "cannot find", "Message", JOptionPane.WARNING_MESSAGE);
+					JOptionPane.showMessageDialog(null, "not match any user", "Message", JOptionPane.WARNING_MESSAGE);
 				}
-
 			}
 		});
-		return btn;
+		btnLogin.setBounds(132, 177, 89, 32);
+		contentPanel.add(btnLogin);
+		
+		JButton btnCancel = new JButton("Cancel");
+		btnCancel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+			}
+		});
+		btnCancel.setBounds(276, 177, 89, 32);
+		contentPanel.add(btnCancel);
 	}
-
-
 }
