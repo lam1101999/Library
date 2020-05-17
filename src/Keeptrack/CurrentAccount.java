@@ -9,10 +9,10 @@ public class CurrentAccount {
 		this.currentAccount = account;
 	}
 
-	public static Account setCurrentAccount(String Account_ID, String Name, String Address, int Phone_Number,
-			String Email) {
+	public static Account setCurrentAccount(String Account_ID, String Name, String[] jobs, String Address,
+			int Phone_Number, String Email) {
 		if (currentAccount == null) {
-			currentAccount = new Account(Account_ID, Name, Address, Phone_Number, Email);
+			currentAccount = new Account(Account_ID, null, Name, jobs, Address, Phone_Number, Email);
 		}
 		return currentAccount;
 	}
@@ -23,12 +23,22 @@ public class CurrentAccount {
 		}
 		return currentAccount;
 	}
+
 	public static Account getCurrentAccount() {
 		return currentAccount;
 	}
 
 	public static void resetAcccount() {
 		currentAccount = null;
+	}
+
+	public static boolean checkJob(String job) {
+		for (String temp : currentAccount.getJob()) {
+			if (temp.equals(job)) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 }

@@ -2,14 +2,18 @@ package Entity;
 
 public class Account {
 	private String Account_ID;
+	private String Password;
 	private String Name;
+	private String[] Job;
 	private String Adress;
 	private int Phone_Number;
 	private String Email;
 
-	public Account(String account_ID, String name, String adress, int phone_Number, String email) {
+	public Account(String account_ID, String password,String name,String[] job, String adress, int phone_Number, String email) {
 		Account_ID = account_ID;
+		Password = password;
 		Name = name;
+		Job = job;
 		Adress = adress;
 		Phone_Number = phone_Number;
 		Email = email;
@@ -22,6 +26,14 @@ public class Account {
 	public void setAccount_ID(String account_ID) {
 		Account_ID = account_ID;
 	}
+	
+	public String getPassword() {
+		return Password;
+	}
+
+	public void setPassword(String password) {
+		Password = password;
+	}
 
 	public String getName() {
 		return Name;
@@ -29,6 +41,13 @@ public class Account {
 
 	public void setName(String name) {
 		Name = name;
+	}
+	public String[] getJob() {
+		return Job;
+	}
+
+	public void setAccount_ID(String[] job) {
+		Job = job;
 	}
 
 	public String getAdress() {

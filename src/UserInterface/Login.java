@@ -53,7 +53,8 @@ public class Login extends JFrame{
 	 */
 	private void initialize() {
 		
-		this.setBounds(100, 100, 500, 300);
+		this.setSize(500, 300);
+		this.setLocationRelativeTo(null);	
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.getContentPane().setLayout(null);
 		
@@ -98,7 +99,10 @@ public class Login extends JFrame{
 				if (ControlAccount.check(tempUserName, tempPassword)) {
 					dispose();
 					CurrentAccount.setCurrentAccount(ControlAccount.find(tempUserName));
-					ChooseFunction chooseFunction = new ChooseFunction(500,600);
+					for(String a: CurrentAccount.getCurrentAccount().getJob()) {
+					System.out.println(a);
+					}
+					ChooseFunction chooseFunction = new ChooseFunction();
 					chooseFunction.setTitle("Welcome");
 					chooseFunction.setVisible(true);// making the frame visible
 				} else {
@@ -112,7 +116,7 @@ public class Login extends JFrame{
 		JButton btnCancel = new JButton("Cancel");
 		btnCancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
+				dispose();
 			}
 		});
 		btnCancel.setBounds(276, 177, 89, 32);

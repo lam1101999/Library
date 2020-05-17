@@ -1,89 +1,97 @@
 package UserInterface;
 
-import java.awt.Dimension;
 import java.awt.EventQueue;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-
+import javax.swing.JLabel;
+import javax.swing.JButton;
+import java.awt.Font;
+import javax.swing.SwingConstants;
 import Keeptrack.CurrentAccount;
 
-public class ChooseFunction extends JFrame {
-	private static int width, height;
-	private JButton btnBorrow;
-	private JButton btnModify;
-	private JButton btnControl;
-	private JPanel contentPane;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
-	public ChooseFunction(int width, int height) {
-		super();
-		this.width = width;
-		this.height = height;
-		setSize(this.width, this.height);
-		setTitle("Activity");
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setLocationRelativeTo(null);
-		setVisible(true);
+public class ChooseFunction extends JFrame{
 
-		addComponent();
+	private JPanel contentPanel;
 
-	}
-
-	private void addComponent() {
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		// set layout
-		contentPane.setLayout(new GridBagLayout());
-
-		GridBagConstraints gbc = new GridBagConstraints();
-		gbc.gridwidth = GridBagConstraints.REMAINDER;
-		gbc.anchor = GridBagConstraints.NORTH;
-
-		contentPane.add(new JLabel("<html><h1><strong>Welcome "+ CurrentAccount.getCurrentAccount().getName()+" to Sparta's library</strong></h1></html>"), gbc);
-
-		gbc.anchor = GridBagConstraints.CENTER;
-		gbc.fill = GridBagConstraints.HORIZONTAL;
-		gbc.insets = new java.awt.Insets(5, 0, 5, 0);
-
-		btnBorrow = createBtnBorrow();
-		btnModify = createBtnModify();
-		btnControl = createBtnControl();
-
-		contentPane.add(btnBorrow, gbc);
-		contentPane.add(btnModify, gbc);
-		contentPane.add(btnControl, gbc);
-
-		gbc.weighty = 10;
-
-	}
-
-	private JButton createBtnBorrow() {
-		JButton btn = new JButton("Borrow Book");
-		btn.setPreferredSize(new Dimension(500, 50));
-		btn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					ChooseFunction window = new ChooseFunction();
+					window.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 			}
 		});
-		return btn;
 	}
 
-	private JButton createBtnModify() {
-		JButton btn = new JButton("Modify Book");
-		return btn;
+	/**
+	 * Create the application.
+	 */
+	public ChooseFunction() {
+		initialize();
 	}
 
-	private JButton createBtnControl() {
-		JButton btn = new JButton("This is my Library");
-		return btn;
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		
+		this.setSize(400, 500);
+		this.setLocationRelativeTo(null);	
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.getContentPane().setLayout(null);
+		
+		JLabel lblLibrary = new JLabel("Library");
+		lblLibrary.setHorizontalAlignment(SwingConstants.CENTER);
+		lblLibrary.setFont(new Font("Tahoma", Font.BOLD, 30));
+		lblLibrary.setBounds(105, 26, 157, 46);
+		getContentPane().add(lblLibrary);
+		
+		JButton btnBorrowBook = new JButton("Borrow Book");
+		btnBorrowBook.setBounds(105, 106, 157, 46);
+		getContentPane().add(btnBorrowBook);
+		
+		JButton btnReturnBook = new JButton("Return Book");
+		btnReturnBook.setBounds(105, 163, 157, 40);
+		getContentPane().add(btnReturnBook);
+		
+		JButton btnModifyInformation = new JButton("Modify Information");
+		btnModifyInformation.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				dispose();
+				ModifyInformation modify = new ModifyInformation();
+				modify.setTitle("Modify");
+				modify.setVisible(true);
+			}
+		});
+		btnModifyInformation.setBounds(105, 214, 157, 44);
+		getContentPane().add(btnModifyInformation);
+		
+		JButton btnManageAccount = new JButton("Manage Account");
+		btnManageAccount.setBounds(105, 269, 157, 44);
+		getContentPane().add(btnManageAccount);
+		
+		JButton btnLogout = new JButton("Logout");
+		btnLogout.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				dispose();
+				CurrentAccount.resetAcccount();
+				Login login = new Login();
+				login.setTitle("Login");
+				login.setVisible(true);
+			}
+		});
+		btnLogout.setBounds(105, 324, 157, 40);
+		getContentPane().add(btnLogout);
 	}
+
 }
