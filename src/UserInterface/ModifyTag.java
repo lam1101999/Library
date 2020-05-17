@@ -70,7 +70,7 @@ public class ModifyTag extends JFrame {
 		this.getContentPane().setLayout(null);
 
 		contentPanel = new JPanel();
-		contentPanel.setBounds(0, 0, 567, 378);
+		contentPanel.setBounds(0, 0, 684, 461);
 		this.getContentPane().add(contentPanel);
 		contentPanel.setLayout(null);
 
@@ -105,7 +105,6 @@ public class ModifyTag extends JFrame {
 				int k = ControlTag.insert( tag);
 				if (k == 1) {
 					JOptionPane.showMessageDialog(null, "insert success", "Message", JOptionPane.WARNING_MESSAGE);
-					txtTag.setText("");
 					txtTag.setText("");
 				} else {
 					JOptionPane.showMessageDialog(null, "insert not success", "Message", JOptionPane.WARNING_MESSAGE);
@@ -168,7 +167,7 @@ public class ModifyTag extends JFrame {
 				modify.setVisible(true);
 			}
 		});
-		btnCancel.setBounds(395, 311, 118, 35);
+		btnCancel.setBounds(536, 373, 118, 35);
 		contentPanel.add(btnCancel);
 
 		table = new JTable();
@@ -190,7 +189,7 @@ public class ModifyTag extends JFrame {
 		});
 
 		scrollPane = new JScrollPane(table);
-		scrollPane.setBounds(252, 64, 261, 236);
+		scrollPane.setBounds(252, 64, 402, 298);
 		contentPanel.add(scrollPane);
 		
 		

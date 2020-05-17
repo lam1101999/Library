@@ -99,9 +99,6 @@ public class Login extends JFrame{
 				if (ControlAccount.check(tempUserName, tempPassword)) {
 					dispose();
 					CurrentAccount.setCurrentAccount(ControlAccount.find(tempUserName));
-					for(String a: CurrentAccount.getCurrentAccount().getJob()) {
-					System.out.println(a);
-					}
 					ChooseFunction chooseFunction = new ChooseFunction();
 					chooseFunction.setTitle("Welcome");
 					chooseFunction.setVisible(true);// making the frame visible
