@@ -75,6 +75,14 @@ public class ModifyInformation extends JFrame {
 		contentPane.add(btnNewButton_1);
 		
 		JButton btnNewButton_2 = new JButton("Book");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				ModifyBook modifyBook = new ModifyBook();
+				modifyBook.setTitle("Modify Author");
+				modifyBook.setVisible(true);
+			}
+		});
 		btnNewButton_2.setBounds(158, 163, 89, 23);
 		contentPane.add(btnNewButton_2);
 		

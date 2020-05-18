@@ -24,13 +24,14 @@ import ControlDataBase.ControlTag;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
+import javax.swing.JScrollBar;
 
 public class ModifyAuthor extends JFrame {
 
 	private JTextField txtAuthor;
 	private JPanel contentPane;
 	private JTable table;
-	private JScrollPane scrollPane;
+	private JScrollPane scrollPane1,scrollPane2;
 	private JLabel txtAuthor_ID;
 	private JTextField txtBirthyear;
 	private JTextArea txtDescription;
@@ -197,17 +198,18 @@ public class ModifyAuthor extends JFrame {
 		});
 		table.getColumnModel().getColumn(2).setPreferredWidth(200);
 
-		scrollPane = new JScrollPane(table);
-		scrollPane.setBounds(276, 56, 398, 308);
-		contentPane.add(scrollPane);
+		scrollPane1 = new JScrollPane(table);
+		scrollPane1.setBounds(276, 56, 398, 308);
+		contentPane.add(scrollPane1);
 		
 		JLabel lblDescription = new JLabel("Description:");
 		lblDescription.setBounds(44, 129, 71, 14);
 		contentPane.add(lblDescription);
 		
 		txtDescription = new JTextArea();
-		txtDescription.setBounds(118, 124, 148, 94);
-		contentPane.add(txtDescription);
+		scrollPane2 = new JScrollPane(txtDescription,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED );
+		scrollPane2.setBounds(118, 124, 148, 94);
+		contentPane.add(scrollPane2);
 		
 		JLabel lblBirthyear = new JLabel("Birthyear");
 		lblBirthyear.setBounds(44, 234, 46, 14);
@@ -217,6 +219,7 @@ public class ModifyAuthor extends JFrame {
 		txtBirthyear.setBounds(118, 231, 148, 20);
 		contentPane.add(txtBirthyear);
 		txtBirthyear.setColumns(10);
+		
 		
 		load_Author();
 

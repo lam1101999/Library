@@ -1,20 +1,20 @@
 package Entity;
 
 public class Tag {
-	private String ID_Name;
+	private String Tag_ID;
 	private String Name;
 
-	public Tag(String ID_Name, String Name) {
-		this.ID_Name = ID_Name;
-		this.ID_Name = Name;
+	public Tag(String Tag_ID, String Name) {
+		this.Tag_ID = Tag_ID;
+		this.Name = Name;
 	}
 
-	public String getID_Name() {
-		return ID_Name;
+	public String getTag_ID() {
+		return Tag_ID;
 	}
 
-	public void setID_Name(String iD_Name) {
-		ID_Name = iD_Name;
+	public void setID_Name(String Tag_ID) {
+		this.Tag_ID = Tag_ID;
 	}
 
 	public String getName() {
@@ -23,5 +23,8 @@ public class Tag {
 
 	public void setName(String name) {
 		Name = name;
+	}
+	public String toString() {
+		return Name;
 	}
 }

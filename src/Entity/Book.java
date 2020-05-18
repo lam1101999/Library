@@ -5,11 +5,13 @@ public class Book {
 	private String Name;
 	private int Year;
 	private String Author;
-	public Book(String book_ID, String name, int year, String author) {
+	private String Tag;
+	public Book(String book_ID, String name, int year, String author, String tag) {
 		Book_ID = book_ID;
 		Name = name;
 		Year = year;
 		Author = author;
+		Tag = tag;
 	}
 	public String getBook_ID() {
 		return Book_ID;
@@ -28,6 +30,12 @@ public class Book {
 	}
 	public void setYear(int year) {
 		Year = year;
+	}
+	public String getTag() {
+		return Tag;
+	}
+	public void setTag(String tag) {
+		Tag = tag;
 	}
 	public String getAuthor() {
 		return Author;
