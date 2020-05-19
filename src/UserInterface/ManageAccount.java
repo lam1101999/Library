@@ -183,9 +183,9 @@ public class ManageAccount extends JFrame {
 		btnCancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				dispose();
-				ModifyInformation modify = new ModifyInformation();
-				modify.setTitle("Modify");
-				modify.setVisible(true);
+				ChooseFunction chooseFunction = new ChooseFunction();
+				chooseFunction.setTitle("Welcome");
+				chooseFunction.setVisible(true);// making the frame visible
 			}
 		});
 		btnCancel.setBounds(738, 393, 118, 35);
