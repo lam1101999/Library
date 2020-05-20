@@ -34,6 +34,8 @@ import Entity.Author;
 import Entity.Book;
 import Entity.Tag;
 import Keeptrack.CurrentAccount;
+import java.awt.Color;
+import java.awt.Font;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -70,20 +72,24 @@ public class BorrowBook extends JFrame {
 	 */
 	public BorrowBook() {
 
-		this.setSize(700, 500);
+		this.setSize(720, 480);
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.getContentPane().setLayout(null);
+                this.setResizable(false);
 
 		contentPane = new JPanel();
-		contentPane.setBounds(0, 11, 684, 461);
+		contentPane.setBounds(0, 0, 720, 480);
+                contentPane.setBackground(Color.BLACK);
 		this.getContentPane().add(contentPane);
 		contentPane.setLayout(null);
 
-		JLabel lblModifyBook = new JLabel("Modify Book");
-		lblModifyBook.setHorizontalAlignment(SwingConstants.CENTER);
-		lblModifyBook.setBounds(292, 11, 148, 45);
-		contentPane.add(lblModifyBook);
+		JLabel lblBorrowBook = new JLabel("Borrow Book");
+		lblBorrowBook.setHorizontalAlignment(SwingConstants.CENTER);
+		lblBorrowBook.setBounds(292, 11, 200, 45);
+                lblBorrowBook.setForeground(Color.WHITE);
+                lblBorrowBook.setFont(new Font("Tahoma", Font.BOLD, 27));
+		contentPane.add(lblBorrowBook);
 
 		JButton btnAdd = new JButton("Borrow");
 		btnAdd.addActionListener(new ActionListener() {
@@ -110,11 +116,12 @@ public class BorrowBook extends JFrame {
 				load_Borrow();
 			}
 		});
-		btnAdd.setBounds(44, 275, 148, 35);
+		btnAdd.setBounds(44, 275, 170, 35);
+                btnAdd.setBackground(Color.WHITE);
 		contentPane.add(btnAdd);
 
-		JButton btnNewButton = new JButton("Return");
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton btnReturn = new JButton("Return");
+		btnReturn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				DefaultTableModel d = (DefaultTableModel) table.getModel();
 				int selectedRow = table.getSelectedRow();
@@ -130,11 +137,12 @@ public class BorrowBook extends JFrame {
 				load_Borrow();
 			}
 		});
-		btnNewButton.setBounds(44, 321, 148, 43);
-		contentPane.add(btnNewButton);
+		btnReturn.setBounds(44, 321, 170, 35);
+                btnReturn.setBackground(Color.WHITE);
+		contentPane.add(btnReturn);
 
-		JButton btnCancel = new JButton("Back");
-		btnCancel.addActionListener(new ActionListener() {
+		JButton btnBack = new JButton("Back");
+		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				dispose();
 				ChooseFunction chooseFunction = new ChooseFunction();
@@ -142,8 +150,9 @@ public class BorrowBook extends JFrame {
 				chooseFunction.setVisible(true);// making the frame visible
 			}
 		});
-		btnCancel.setBounds(515, 375, 118, 35);
-		contentPane.add(btnCancel);
+		btnBack.setBounds(555, 380, 118, 35);
+                btnBack.setBackground(Color.WHITE);
+		contentPane.add(btnBack);
 
 		table = new JTable();
 		table.addMouseListener(new MouseAdapter() {
@@ -184,12 +193,14 @@ public class BorrowBook extends JFrame {
 		scrollPane1.setBounds(276, 56, 398, 308);
 		contentPane.add(scrollPane1);
 
-		JLabel lblAuthor = new JLabel("Book:");
-		lblAuthor.setBounds(44, 82, 46, 14);
-		contentPane.add(lblAuthor);
+		JLabel lblBook = new JLabel("Book");
+		lblBook.setBounds(44, 82, 46, 14);
+                lblBook.setForeground(Color.WHITE);
+                lblBook.setFont(new Font("Tahoma", Font.BOLD, 15));
+		contentPane.add(lblBook);
 
 		comboBoxBook = new JComboBox();
-		comboBoxBook.setBounds(125, 79, 100, 20);
+		comboBoxBook.setBounds(44, 120, 170, 20);
 		comboBoxBook.removeAllItems();
 		try {
 			Connection conn = new MyConnection().getConnection();

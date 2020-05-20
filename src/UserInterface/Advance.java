@@ -10,6 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import ControlDataBase.RunQuery;
+import java.awt.Color;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -25,6 +26,7 @@ public class Advance extends JFrame {
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.getContentPane().setLayout(null);
+                this.setResizable(false);
 
 		BorderLayout layout = new BorderLayout();
 		getContentPane().setLayout(layout);
@@ -32,6 +34,7 @@ public class Advance extends JFrame {
 		l = new Label("Query");
 		txtQuery = new TextField();
 		btnrun = new JButton("Run");
+                btnrun.setBackground(Color.LIGHT_GRAY);
 		btnrun.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if (txtQuery.getText().length() == 0) {

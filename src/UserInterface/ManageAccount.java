@@ -30,6 +30,8 @@ import ControlDataBase.ControlHave_Job;
 import ControlDataBase.ControlTag;
 import ControlDataBase.MyConnection;
 import Entity.Job;
+import java.awt.Color;
+import java.awt.Font;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -73,37 +75,40 @@ public class ManageAccount extends JFrame {
 	 */
 	public ManageAccount() {
 
-		this.setSize(902, 614);
+		this.setSize(880, 460);
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.getContentPane().setLayout(null);
+                this.setResizable(false);
 
 		contentPane = new JPanel();
-		contentPane.setBounds(0, 0, 876, 575);
+		contentPane.setBounds(0, 0, 880, 460);
+                contentPane.setBackground(Color.BLACK);
 		this.getContentPane().add(contentPane);
 		contentPane.setLayout(null);
 
-		JLabel lblModifyBook = new JLabel("Modify Account");
-		lblModifyBook.setHorizontalAlignment(SwingConstants.CENTER);
-		lblModifyBook.setBounds(292, 11, 148, 45);
-		contentPane.add(lblModifyBook);
+		JLabel lblModifyAccount = new JLabel("Manage Account");
+		lblModifyAccount.setHorizontalAlignment(SwingConstants.CENTER);
+		lblModifyAccount.setBounds(292, 5, 250, 45);
+                lblModifyAccount.setForeground(Color.WHITE);
+                lblModifyAccount.setFont(new Font("Tahoma", Font.BOLD, 25));
+		contentPane.add(lblModifyAccount);
 
-		JLabel lblNewLabel = new JLabel("Password:");
-		lblNewLabel.setHorizontalAlignment(SwingConstants.LEFT);
-		lblNewLabel.setBounds(10, 81, 85, 14);
-		contentPane.add(lblNewLabel);
+		JLabel lblPassword = new JLabel("Password");
+		lblPassword.setHorizontalAlignment(SwingConstants.LEFT);
+		lblPassword.setBounds(10, 81, 85, 14);
+                lblPassword.setForeground(Color.WHITE);
+		contentPane.add(lblPassword);
 
-		JLabel lblStatus = new JLabel("Account_ID:");
-		lblStatus.setHorizontalAlignment(SwingConstants.LEFT);
-		lblStatus.setBounds(10, 56, 85, 14);
-		contentPane.add(lblStatus);
-
-		txtAuthor_ID = new JLabel("");
-		txtAuthor_ID.setBounds(118, 56, 107, 14);
-		contentPane.add(txtAuthor_ID);
+		JLabel lblAccount = new JLabel("Account ID");
+		lblAccount.setHorizontalAlignment(SwingConstants.LEFT);
+		lblAccount.setBounds(10, 56, 85, 14);
+                lblAccount.setForeground(Color.WHITE);
+		contentPane.add(lblAccount);
 
 		txtAccount_ID = new JTextField();
 		txtAccount_ID.setBounds(105, 53, 148, 20);
+                txtAccount_ID.setBorder(null);
 		contentPane.add(txtAccount_ID);
 		txtAccount_ID.setColumns(10);
 
@@ -130,10 +135,11 @@ public class ManageAccount extends JFrame {
 			}
 		});
 		btnAdd.setBounds(44, 275, 148, 35);
+                btnAdd.setBackground(Color.WHITE);
 		contentPane.add(btnAdd);
 
-		JButton btnNewButton = new JButton("Delete");
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton btnDelete = new JButton("Delete");
+		btnDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				DefaultTableModel d = (DefaultTableModel) table.getModel();
 				int selectedRow = table.getSelectedRow();
@@ -150,8 +156,9 @@ public class ManageAccount extends JFrame {
 				load_Account();
 			}
 		});
-		btnNewButton.setBounds(44, 321, 148, 43);
-		contentPane.add(btnNewButton);
+		btnDelete.setBounds(44, 321, 148, 35);
+                btnDelete.setBackground(Color.WHITE);
+		contentPane.add(btnDelete);
 
 		JButton btnEdit = new JButton("Edit");
 		btnEdit.addActionListener(new ActionListener() {
@@ -176,7 +183,8 @@ public class ManageAccount extends JFrame {
 				load_Account();
 			}
 		});
-		btnEdit.setBounds(44, 375, 148, 35);
+		btnEdit.setBounds(44, 367, 148, 35);
+                btnEdit.setBackground(Color.WHITE);
 		contentPane.add(btnEdit);
 
 		JButton btnCancel = new JButton("Back");
@@ -188,7 +196,8 @@ public class ManageAccount extends JFrame {
 				chooseFunction.setVisible(true);// making the frame visible
 			}
 		});
-		btnCancel.setBounds(738, 393, 118, 35);
+		btnCancel.setBounds(738, 367, 118, 35);
+                btnCancel.setBackground(Color.WHITE);
 		contentPane.add(btnCancel);
 
 		table = new JTable();
@@ -242,52 +251,63 @@ public class ManageAccount extends JFrame {
 		scrollPane1.setBounds(263, 49, 593, 308);
 		contentPane.add(scrollPane1);
 
-		JLabel lblDescription = new JLabel("Name:");
-		lblDescription.setBounds(10, 106, 71, 14);
-		contentPane.add(lblDescription);
+		JLabel lblName = new JLabel("Name");
+		lblName.setBounds(10, 106, 71, 14);
+                lblName.setForeground(Color.WHITE);
+		contentPane.add(lblName);
 
-		JLabel lblBirthyear = new JLabel("Phone Number:");
-		lblBirthyear.setBounds(10, 156, 85, 14);
-		contentPane.add(lblBirthyear);
+		JLabel lblPhone = new JLabel("Phone Number");
+		lblPhone.setBounds(10, 156, 85, 14);
+                lblPhone.setForeground(Color.WHITE);
+		contentPane.add(lblPhone);
 
-		JLabel lblAddress = new JLabel("Address:");
-		lblAddress.setBounds(10, 131, 46, 14);
+		JLabel lblAddress = new JLabel("Address");
+		lblAddress.setBounds(10, 131, 60, 14);
+                lblAddress.setForeground(Color.WHITE);
 		contentPane.add(lblAddress);
 
-		JLabel lblEmail = new JLabel("Email:");
+		JLabel lblEmail = new JLabel("Email");
 		lblEmail.setBounds(10, 181, 46, 14);
+                lblEmail.setForeground(Color.WHITE);
 		contentPane.add(lblEmail);
 
 		txtPassword = new JPasswordField();
 		txtPassword.setBounds(105, 78, 148, 20);
+                txtPassword.setBorder(null);
 		contentPane.add(txtPassword);
 
 		txtName = new JTextField();
 		txtName.setBounds(105, 103, 148, 20);
+                txtName.setBorder(null);
 		contentPane.add(txtName);
 		txtName.setColumns(10);
 
 		txtAddress = new JTextField();
 		txtAddress.setBounds(105, 128, 148, 20);
+                txtAddress.setBorder(null);
 		contentPane.add(txtAddress);
 		txtAddress.setColumns(10);
 
 		txtPhoneNumber = new JTextField();
 		txtPhoneNumber.setBounds(105, 153, 148, 20);
+                txtPhoneNumber.setBorder(null);
 		contentPane.add(txtPhoneNumber);
 		txtPhoneNumber.setColumns(10);
 
 		txtEmail = new JTextField();
 		txtEmail.setBounds(105, 178, 148, 20);
+                txtEmail.setBorder(null);
 		contentPane.add(txtEmail);
 		txtEmail.setColumns(10);
 
-		JLabel lblRole = new JLabel("Job:");
+		JLabel lblRole = new JLabel("Job");
 		lblRole.setBounds(10, 213, 46, 14);
+                lblRole.setForeground(Color.WHITE);
 		contentPane.add(lblRole);
 
 		comboBoxJob = new JComboBox();
 		comboBoxJob.setBounds(105, 213, 148, 20);
+                comboBoxJob.setBorder(null);
 		contentPane.add(comboBoxJob);
 		comboBoxJob.removeAllItems();
 		try {

@@ -9,11 +9,14 @@ import javax.swing.border.EmptyBorder;
 
 import ControlDataBase.ControlAccount;
 import Keeptrack.CurrentAccount;
+import java.awt.Color;
+import java.awt.Font;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.SwingConstants;
 
 public class ModifyInformation extends JFrame {
 
@@ -40,15 +43,18 @@ public class ModifyInformation extends JFrame {
 	 */
 	public ModifyInformation() {
 		
-		this.setSize(400, 500);
+		this.setSize(380, 460);
 		this.setLocationRelativeTo(null);	
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.getContentPane().setLayout(null);
+                this.setResizable(false);
 		
 		contentPane = new JPanel();
-		contentPane.setBounds(0, 0, 567, 378);
+                contentPane.setBackground(Color.BLACK);
+		contentPane.setBounds(0, 0, 380, 460);
 		this.getContentPane().add(contentPane);
 		contentPane.setLayout(null);
+                
 		
 		JButton btnNewButton = new JButton("Tag");
 		btnNewButton.addActionListener(new ActionListener() {
@@ -59,7 +65,8 @@ public class ModifyInformation extends JFrame {
 				modifyTag.setVisible(true);
 			}
 		});
-		btnNewButton.setBounds(158, 72, 89, 23);
+		btnNewButton.setBounds(105, 136, 157, 46);
+                btnNewButton.setBackground(Color.WHITE);
 		contentPane.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Author");
@@ -71,7 +78,8 @@ public class ModifyInformation extends JFrame {
 				modifyAuthor.setVisible(true);
 			}
 		});
-		btnNewButton_1.setBounds(158, 117, 89, 23);
+		btnNewButton_1.setBounds(105, 193, 157, 44);
+                btnNewButton_1.setBackground(Color.WHITE);
 		contentPane.add(btnNewButton_1);
 		
 		JButton btnNewButton_2 = new JButton("Book");
@@ -83,11 +91,15 @@ public class ModifyInformation extends JFrame {
 				modifyBook.setVisible(true);
 			}
 		});
-		btnNewButton_2.setBounds(158, 163, 89, 23);
+		btnNewButton_2.setBounds(105, 248, 157, 44);
+                btnNewButton_2.setBackground(Color.WHITE);
 		contentPane.add(btnNewButton_2);
 		
 		JLabel lblModify = new JLabel("Modify");
-		lblModify.setBounds(185, 11, 46, 14);
+                lblModify.setHorizontalAlignment(SwingConstants.CENTER);
+		lblModify.setBounds(105, 26, 157, 46);
+                lblModify.setFont(new Font("Tahoma", Font.BOLD, 25));
+                lblModify.setForeground(Color.WHITE);
 		contentPane.add(lblModify);
 		
 		JButton btnBack = new JButton("Back");
@@ -99,7 +111,8 @@ public class ModifyInformation extends JFrame {
 				chooseFunction.setVisible(true);// making the frame visible
 			}
 		});
-		btnBack.setBounds(158, 214, 89, 23);
+		btnBack.setBounds(105, 303, 157, 40);
+                btnBack.setBackground(Color.WHITE);
 		contentPane.add(btnBack);
 	}
 }

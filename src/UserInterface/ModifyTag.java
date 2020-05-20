@@ -14,6 +14,8 @@ import javax.swing.table.JTableHeader;
 
 import ControlDataBase.ControlTag;
 import Entity.Tag;
+import java.awt.Color;
+import java.awt.Font;
 
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
@@ -64,37 +66,45 @@ public class ModifyTag extends JFrame {
 	 */
 	private void initialize() {
 
-		this.setSize(700, 500);
+		this.setSize(700, 480);
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.getContentPane().setLayout(null);
-
+                this.setResizable(false);
+                
 		contentPanel = new JPanel();
-		contentPanel.setBounds(0, 0, 684, 461);
+		contentPanel.setBounds(0, 0, 700, 480);
+                contentPanel.setBackground(Color.BLACK);
 		this.getContentPane().add(contentPanel);
 		contentPanel.setLayout(null);
 
-		JLabel lblModifyBook = new JLabel("Modify Information");
-		lblModifyBook.setHorizontalAlignment(SwingConstants.CENTER);
-		lblModifyBook.setBounds(230, 11, 148, 45);
-		contentPanel.add(lblModifyBook);
+		JLabel lblModifyInformation = new JLabel("Modify Information");
+		lblModifyInformation.setHorizontalAlignment(SwingConstants.CENTER);
+		lblModifyInformation.setBounds(292, 11, 250, 45);
+                lblModifyInformation.setForeground(Color.WHITE);
+                lblModifyInformation.setFont(new Font("Tahoma", Font.BOLD, 25));
+		contentPanel.add(lblModifyInformation);
 
-		JLabel lblNewLabel = new JLabel("Tag name:");
+		JLabel lblNewLabel = new JLabel("Tag name");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.LEFT);
 		lblNewLabel.setBounds(44, 95, 64, 14);
+                lblNewLabel.setForeground(Color.WHITE);
 		contentPanel.add(lblNewLabel);
 
-		JLabel lblStatus = new JLabel("Tag_ID:");
+		JLabel lblStatus = new JLabel("Tag ID");
 		lblStatus.setHorizontalAlignment(SwingConstants.LEFT);
 		lblStatus.setBounds(44, 56, 46, 14);
+                lblStatus.setForeground(Color.WHITE);
 		contentPanel.add(lblStatus);
 		
 		txtTag_ID = new JLabel("");
 		txtTag_ID.setBounds(118, 56, 86, 14);
+                txtTag_ID.setForeground(Color.WHITE);
 		contentPanel.add(txtTag_ID);
 
 		txtTag = new JTextField();
 		txtTag.setBounds(118, 92, 86, 20);
+                txtTag.setBorder(null);
 		contentPanel.add(txtTag);
 		txtTag.setColumns(10);
 
@@ -113,10 +123,11 @@ public class ModifyTag extends JFrame {
 			}
 		});
 		btnAdd.setBounds(44, 178, 148, 35);
+                btnAdd.setBackground(Color.WHITE);
 		contentPanel.add(btnAdd);
 
-		JButton btnNewButton = new JButton("Delete");
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton btnDelete = new JButton("Delete");
+		btnDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				DefaultTableModel d = (DefaultTableModel) table.getModel();
 				int selectedRow = table.getSelectedRow();
@@ -133,8 +144,9 @@ public class ModifyTag extends JFrame {
 				load_Tag();
 			}
 		});
-		btnNewButton.setBounds(44, 224, 148, 43);
-		contentPanel.add(btnNewButton);
+		btnDelete.setBounds(44, 224, 148, 35);
+                btnDelete.setBackground(Color.WHITE);
+		contentPanel.add(btnDelete);
 
 		JButton btnEdit = new JButton("Edit");
 		btnEdit.addActionListener(new ActionListener() {
@@ -155,7 +167,8 @@ public class ModifyTag extends JFrame {
 				load_Tag();
 			}
 		});
-		btnEdit.setBounds(44, 278, 148, 35);
+		btnEdit.setBounds(44, 270, 148, 35);
+                btnEdit.setBackground(Color.WHITE);
 		contentPanel.add(btnEdit);
 
 		JButton btnCancel = new JButton("Back");
@@ -168,6 +181,7 @@ public class ModifyTag extends JFrame {
 			}
 		});
 		btnCancel.setBounds(536, 373, 118, 35);
+                btnCancel.setBackground(Color.WHITE);
 		contentPanel.add(btnCancel);
 
 		table = new JTable();
@@ -187,7 +201,7 @@ public class ModifyTag extends JFrame {
 				return columnTypes[columnIndex];
 			}
 		});
-
+                
 		scrollPane = new JScrollPane(table);
 		scrollPane.setBounds(252, 64, 402, 298);
 		contentPanel.add(scrollPane);

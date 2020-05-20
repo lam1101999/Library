@@ -20,6 +20,8 @@ import javax.swing.table.DefaultTableModel;
 
 import ControlDataBase.ControlAuthor;
 import ControlDataBase.ControlTag;
+import java.awt.Color;
+import java.awt.Font;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -57,37 +59,46 @@ public class ModifyAuthor extends JFrame {
 	 */
 	public ModifyAuthor() {
 
-		this.setSize(700, 500);
+		this.setSize(720, 480);
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.getContentPane().setLayout(null);
+                this.setResizable(false);
+                
 
 		contentPane = new JPanel();
-		contentPane.setBounds(0, 0, 684, 461);
+		contentPane.setBounds(0, 0, 720, 480);
+                contentPane.setBackground(Color.BLACK);
 		this.getContentPane().add(contentPane);
 		contentPane.setLayout(null);
 
-		JLabel lblModifyBook = new JLabel("Modify Author");
-		lblModifyBook.setHorizontalAlignment(SwingConstants.CENTER);
-		lblModifyBook.setBounds(292, 11, 148, 45);
-		contentPane.add(lblModifyBook);
+		JLabel lblModifyAuthor = new JLabel("Modify Author");
+		lblModifyAuthor.setHorizontalAlignment(SwingConstants.CENTER);
+		lblModifyAuthor.setBounds(292, 11, 200, 45);
+                lblModifyAuthor.setForeground(Color.WHITE);
+                lblModifyAuthor.setFont(new Font("Tahoma", Font.BOLD, 25));
+		contentPane.add(lblModifyAuthor);
 
-		JLabel lblNewLabel = new JLabel("Author name:");
-		lblNewLabel.setHorizontalAlignment(SwingConstants.LEFT);
-		lblNewLabel.setBounds(44, 95, 85, 14);
-		contentPane.add(lblNewLabel);
+		JLabel lblName = new JLabel("Name");
+		lblName.setHorizontalAlignment(SwingConstants.LEFT);
+		lblName.setBounds(44, 95, 85, 14);
+                lblName.setForeground(Color.WHITE);
+		contentPane.add(lblName);
 
-		JLabel lblStatus = new JLabel("Author_ID:");
+		JLabel lblStatus = new JLabel("Author ID");
 		lblStatus.setHorizontalAlignment(SwingConstants.LEFT);
 		lblStatus.setBounds(44, 56, 85, 14);
+                lblStatus.setForeground(Color.WHITE);
 		contentPane.add(lblStatus);
 
 		txtAuthor_ID = new JLabel("");
 		txtAuthor_ID.setBounds(118, 56, 107, 14);
+                txtAuthor_ID.setForeground(Color.WHITE);
 		contentPane.add(txtAuthor_ID);
 
 		txtAuthor = new JTextField();
 		txtAuthor.setBounds(118, 92, 148, 20);
+                txtAuthor.setBorder(null);
 		contentPane.add(txtAuthor);
 		txtAuthor.setColumns(10);
 
@@ -110,10 +121,11 @@ public class ModifyAuthor extends JFrame {
 			}
 		});
 		btnAdd.setBounds(44, 275, 148, 35);
+                btnAdd.setBackground(Color.WHITE);
 		contentPane.add(btnAdd);
 
-		JButton btnNewButton = new JButton("Delete");
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton btnDelete = new JButton("Delete");
+		btnDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				DefaultTableModel d = (DefaultTableModel) table.getModel();
 				int selectedRow = table.getSelectedRow();
@@ -130,8 +142,9 @@ public class ModifyAuthor extends JFrame {
 				load_Author();
 			}
 		});
-		btnNewButton.setBounds(44, 321, 148, 43);
-		contentPane.add(btnNewButton);
+		btnDelete.setBounds(44, 321, 148, 35);
+                btnDelete.setBackground(Color.WHITE);
+		contentPane.add(btnDelete);
 
 		JButton btnEdit = new JButton("Edit");
 		btnEdit.addActionListener(new ActionListener() {
@@ -154,7 +167,8 @@ public class ModifyAuthor extends JFrame {
 				load_Author();
 			}
 		});
-		btnEdit.setBounds(44, 375, 148, 35);
+		btnEdit.setBounds(44, 367, 148, 35);
+                btnEdit.setBackground(Color.WHITE);
 		contentPane.add(btnEdit);
 
 		JButton btnCancel = new JButton("Back");
@@ -166,7 +180,8 @@ public class ModifyAuthor extends JFrame {
 				modify.setVisible(true);
 			}
 		});
-		btnCancel.setBounds(515, 375, 118, 35);
+		btnCancel.setBounds(556, 375, 118, 35);
+                btnCancel.setBackground(Color.WHITE);
 		contentPane.add(btnCancel);
 
 		table = new JTable();
@@ -200,23 +215,28 @@ public class ModifyAuthor extends JFrame {
 
 		scrollPane1 = new JScrollPane(table);
 		scrollPane1.setBounds(276, 56, 398, 308);
+                scrollPane1.setBorder(null);
 		contentPane.add(scrollPane1);
 		
-		JLabel lblDescription = new JLabel("Description:");
+		JLabel lblDescription = new JLabel("Description");
 		lblDescription.setBounds(44, 129, 71, 14);
+                lblDescription.setForeground(Color.WHITE);
 		contentPane.add(lblDescription);
 		
 		txtDescription = new JTextArea();
 		scrollPane2 = new JScrollPane(txtDescription,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED );
 		scrollPane2.setBounds(118, 124, 148, 94);
+                scrollPane2.setBorder(null);
 		contentPane.add(scrollPane2);
 		
 		JLabel lblBirthyear = new JLabel("Birthyear");
-		lblBirthyear.setBounds(44, 234, 46, 14);
+		lblBirthyear.setBounds(44, 234, 71, 14);
+                lblBirthyear.setForeground(Color.WHITE);
 		contentPane.add(lblBirthyear);
 		
 		txtBirthyear = new JTextField();
 		txtBirthyear.setBounds(118, 231, 148, 20);
+                txtBirthyear.setBorder(null);
 		contentPane.add(txtBirthyear);
 		txtBirthyear.setColumns(10);
 		

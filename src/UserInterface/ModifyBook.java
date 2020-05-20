@@ -30,6 +30,8 @@ import ControlDataBase.ControlTag;
 import ControlDataBase.MyConnection;
 import Entity.Author;
 import Entity.Tag;
+import java.awt.Color;
+import java.awt.Font;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -67,30 +69,36 @@ public class ModifyBook extends JFrame {
 	 */
 	public ModifyBook() {
 
-		this.setSize(700, 500);
+		this.setSize(720, 480);
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.getContentPane().setLayout(null);
+                this.setResizable(false);
 
 		contentPane = new JPanel();
-		contentPane.setBounds(0, 11, 684, 461);
+		contentPane.setBounds(0, 0, 720, 480);
+                contentPane.setBackground(Color.BLACK);
 		this.getContentPane().add(contentPane);
 		contentPane.setLayout(null);
 
 		JLabel lblModifyBook = new JLabel("Modify Book");
 		lblModifyBook.setHorizontalAlignment(SwingConstants.CENTER);
-		lblModifyBook.setBounds(292, 11, 148, 45);
+		lblModifyBook.setBounds(292, 11, 200, 45);
+                lblModifyBook.setForeground(Color.WHITE);
+                lblModifyBook.setFont(new Font("Tahoma", Font.BOLD, 25));
 		contentPane.add(lblModifyBook);
 
-		JLabel lblNewLabel = new JLabel("Name:");
-		lblNewLabel.setHorizontalAlignment(SwingConstants.LEFT);
-		lblNewLabel.setBounds(44, 95, 85, 14);
-		contentPane.add(lblNewLabel);
+		JLabel lblName = new JLabel("Name");
+		lblName.setHorizontalAlignment(SwingConstants.LEFT);
+		lblName.setBounds(44, 95, 85, 14);
+                lblName.setForeground(Color.WHITE);
+		contentPane.add(lblName);
 
-		JLabel lblStatus = new JLabel("Book_ID:");
-		lblStatus.setHorizontalAlignment(SwingConstants.LEFT);
-		lblStatus.setBounds(44, 56, 85, 14);
-		contentPane.add(lblStatus);
+		JLabel lblBookID = new JLabel("Book ID");
+		lblBookID.setHorizontalAlignment(SwingConstants.LEFT);
+		lblBookID.setBounds(44, 56, 85, 14);
+                lblBookID.setForeground(Color.WHITE);
+		contentPane.add(lblBookID);
 
 		JButton btnAdd = new JButton("Add");
 		btnAdd.addActionListener(new ActionListener() {
@@ -128,10 +136,11 @@ public class ModifyBook extends JFrame {
 			}
 		});
 		btnAdd.setBounds(44, 275, 148, 35);
+                btnAdd.setBackground(Color.WHITE);
 		contentPane.add(btnAdd);
 
-		JButton btnNewButton = new JButton("Delete");
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton btnDelete = new JButton("Delete");
+		btnDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				DefaultTableModel d = (DefaultTableModel) table.getModel();
 				int selectedRow = table.getSelectedRow();
@@ -147,8 +156,9 @@ public class ModifyBook extends JFrame {
 				load_Book();
 			}
 		});
-		btnNewButton.setBounds(44, 321, 148, 43);
-		contentPane.add(btnNewButton);
+		btnDelete.setBounds(44, 321, 148, 35);
+                btnDelete.setBackground(Color.WHITE);
+		contentPane.add(btnDelete);
 
 		JButton btnEdit = new JButton("Edit");
 		btnEdit.addActionListener(new ActionListener() {
@@ -172,11 +182,12 @@ public class ModifyBook extends JFrame {
 				load_Book();
 			}
 		});
-		btnEdit.setBounds(44, 375, 148, 35);
+		btnEdit.setBounds(44, 367, 148, 35);
+                btnEdit.setBackground(Color.WHITE);
 		contentPane.add(btnEdit);
 
-		JButton btnCancel = new JButton("Back");
-		btnCancel.addActionListener(new ActionListener() {
+		JButton btnBack = new JButton("Back");
+		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				dispose();
 				ModifyInformation modify = new ModifyInformation();
@@ -184,8 +195,9 @@ public class ModifyBook extends JFrame {
 				modify.setVisible(true);
 			}
 		});
-		btnCancel.setBounds(515, 375, 118, 35);
-		contentPane.add(btnCancel);
+		btnBack.setBounds(556, 375, 118, 35);
+                btnBack.setBackground(Color.WHITE);
+		contentPane.add(btnBack);
 
 		table = new JTable();
 		table.addMouseListener(new MouseAdapter() {
@@ -247,25 +259,30 @@ public class ModifyBook extends JFrame {
 		scrollPane1.setBounds(276, 56, 398, 308);
 		contentPane.add(scrollPane1);
 
-		JLabel lblDescription = new JLabel("Year:");
-		lblDescription.setBounds(44, 129, 71, 14);
-		contentPane.add(lblDescription);
+		JLabel lblYear = new JLabel("Year");
+		lblYear.setBounds(44, 129, 71, 14);
+                lblYear.setForeground(Color.WHITE);
+		contentPane.add(lblYear);
 
-		JLabel lblAuthor = new JLabel("Author:");
+		JLabel lblAuthor = new JLabel("Author");
 		lblAuthor.setBounds(44, 161, 46, 14);
+                lblAuthor.setForeground(Color.WHITE);
 		contentPane.add(lblAuthor);
 
-		JLabel lblTag = new JLabel("Tag:");
+		JLabel lblTag = new JLabel("Tag");
 		lblTag.setBounds(44, 196, 46, 14);
+                lblTag.setForeground(Color.WHITE);
 		contentPane.add(lblTag);
 
 		txtName = new JTextField();
 		txtName.setBounds(125, 92, 100, 20);
+                txtName.setBorder(null);
 		contentPane.add(txtName);
 		txtName.setColumns(10);
 
 		txtYear = new JTextField();
 		txtYear.setBounds(125, 126, 100, 20);
+                txtYear.setBorder(null);
 		contentPane.add(txtYear);
 		txtYear.setColumns(10);
 
@@ -282,6 +299,7 @@ public class ModifyBook extends JFrame {
 		} catch (SQLException ex) {
 			ex.printStackTrace();
 		}
+                comboBoxAuthor.setBorder(null);
 		contentPane.add(comboBoxAuthor);
 
 		comboBoxTag = new JComboBox();
@@ -297,10 +315,12 @@ public class ModifyBook extends JFrame {
 		} catch (SQLException ex) {
 			ex.printStackTrace();
 		}
+                comboBoxTag.setBorder(null);
 		contentPane.add(comboBoxTag);
 
 		txtBook_ID = new JTextField();
 		txtBook_ID.setBounds(125, 53, 100, 20);
+                txtBook_ID.setBorder(null);
 		contentPane.add(txtBook_ID);
 		txtBook_ID.setColumns(10);
 
