@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import java.awt.Font;
 import javax.swing.SwingConstants;
@@ -59,10 +60,15 @@ public class ChooseFunction extends JFrame {
 		JButton btnBorrowBook = new JButton("Borrow Book");
 		btnBorrowBook.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				dispose();
-				BorrowBook borrowBook = new BorrowBook();
-				borrowBook.setTitle("Modify");
-				borrowBook.setVisible(true);
+				String job = CurrentAccount.getCurrentAccount().getJob()[0];
+				if (job.equals("Student") || job.equals("Lecturer")) {
+					dispose();
+					BorrowBook borrowBook = new BorrowBook();
+					borrowBook.setTitle("Modify");
+					borrowBook.setVisible(true);
+				} else
+					JOptionPane.showMessageDialog(null, "You cannot access this!!!", "Message",
+							JOptionPane.WARNING_MESSAGE);
 			}
 		});
 		btnBorrowBook.setBounds(105, 136, 157, 46);
@@ -71,10 +77,15 @@ public class ChooseFunction extends JFrame {
 		JButton btnModifyInformation = new JButton("Modify Information");
 		btnModifyInformation.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				dispose();
-				ModifyInformation modify = new ModifyInformation();
-				modify.setTitle("Modify");
-				modify.setVisible(true);
+				String job = CurrentAccount.getCurrentAccount().getJob()[0];
+				if (job.equals("Staff")) {
+					dispose();
+					ModifyInformation modify = new ModifyInformation();
+					modify.setTitle("Modify");
+					modify.setVisible(true);
+				} else
+					JOptionPane.showMessageDialog(null, "You cannot access this!!!", "Message",
+							JOptionPane.WARNING_MESSAGE);
 			}
 		});
 		btnModifyInformation.setBounds(105, 193, 157, 44);
@@ -83,10 +94,15 @@ public class ChooseFunction extends JFrame {
 		JButton btnManageAccount = new JButton("Manage Account");
 		btnManageAccount.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				dispose();
-				ManageAccount manageAccount = new ManageAccount();
-				manageAccount.setTitle("Account");
-				manageAccount.setVisible(true);
+				String job = CurrentAccount.getCurrentAccount().getJob()[0];
+				if (job.equals("Manager")) {
+					dispose();
+					ManageAccount manageAccount = new ManageAccount();
+					manageAccount.setTitle("Account");
+					manageAccount.setVisible(true);
+				} else
+					JOptionPane.showMessageDialog(null, "You cannot access this!!!", "Message",
+							JOptionPane.WARNING_MESSAGE);
 			}
 		});
 		btnManageAccount.setBounds(105, 248, 157, 44);
@@ -102,8 +118,24 @@ public class ChooseFunction extends JFrame {
 				login.setVisible(true);
 			}
 		});
-		btnLogout.setBounds(105, 303, 157, 40);
+		btnLogout.setBounds(105, 356, 157, 40);
 		getContentPane().add(btnLogout);
+		
+		JButton btnNewButton = new JButton("Advance");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String job = CurrentAccount.getCurrentAccount().getJob()[0];
+				if (job.equals("Manager")) {
+					dispose();
+					Advance advance = new Advance();
+					advance.setTitle("Account");
+					advance.setVisible(true);
+				} else
+					JOptionPane.showMessageDialog(null, "You cannot access this!!!", "Message",
+							JOptionPane.WARNING_MESSAGE);
+			}
+		});
+		btnNewButton.setBounds(105, 305, 157, 40);
+		getContentPane().add(btnNewButton);
 	}
-
 }
